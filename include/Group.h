@@ -14,15 +14,19 @@ class Group {
   std::string spec;
   std::vector<Student*> students;
   Student* head;
+
  public:
   Group();
-  Group(std::string title);
+  Group(const std::string& title, const std::string& spec);
+  Group(Group& other);
+  Group(Group&& other);
+  
   void addStudent(Student& student);
   void chooseHead();
   Student* findStudent(int ID);
-  Student* findStudent(std::string fio);
+  Student* findStudent(const std::string& fio);
   double getAverageMark();
   void expelStudent(Student& student);
 };
 
-#endif // GROUP_H
+#endif  // GROUP_H

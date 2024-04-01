@@ -1,17 +1,12 @@
 #include <iostream>
 #include "Student.h"
+#include "Deanery.h"
 
 int main() {
  
-  Student he(12, "ASdas");
-  // Student me(std::move(he));
-  // std::cout << me.getID() << std::endl;
-  // std::cout << me.getFio() << std::endl;
-
-  he.addMark(5);
-  
-
-  
- std::cout << he.getAverageMark() << std::endl;
+  Student me(12, "SA");
+  Group CST5("CST5", "IMIKN");
+  CST5.addStudent(me);
+  me.addToGroup(&CST5);
   return 0;
 }

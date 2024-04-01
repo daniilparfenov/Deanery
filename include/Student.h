@@ -29,6 +29,7 @@ class Student {
   int getID() const;
   Group* getGroup() const;
   std::vector<int> getMarks() const;
+
 };
 
 #endif  // STUDENT_H

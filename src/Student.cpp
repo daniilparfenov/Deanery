@@ -25,7 +25,7 @@ Student::Student(const Student& other) {
 
 Student::Student(Student&& other) {
   this->id = other.id;
-  this->fio = other.fio;
+  this->fio = std::move(other.fio);
   this->group = other.group;
 
   this->marks = std::move(other.marks);
@@ -66,5 +66,9 @@ double Student::getAverageMark() const {
 }
 
 void Student::addToGroup(Group* group) {
-  this->group = group;
+  if (this->group != group)
+  {
+    this->group = group;
+    group->addStudent(*this);
+  }
 }
