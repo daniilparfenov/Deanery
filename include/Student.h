@@ -23,7 +23,7 @@ class Student {
 
   void addToGroup(Group* group);
   void addMark(int mark);
-  double getAverageMark();
+  double getAverageMark() const;
 
   std::string getFio() const;
   int getID() const;

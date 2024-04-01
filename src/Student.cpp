@@ -23,11 +23,11 @@ Student::Student(const Student& other) {
   }
 }
 
-Student::Student(Student&& other): id(id), fio(fio), group(group) {
+Student::Student(Student&& other) {
   this->id = other.id;
   this->fio = other.fio;
   this->group = other.group;
-  
+
   this->marks = std::move(other.marks);
   other.group = nullptr;
 }
@@ -46,4 +46,13 @@ Group* Student::getGroup() const {
 
 std::vector<int> Student::getMarks() const {
   return marks;
+}
+
+void Student::addMark(int mark) {
+  if (0 <= mark && mark <= 10)
+  {
+    marks.push_back(mark);
+  } else {
+    throw "Invalid mark";
+  }
 }
