@@ -8,13 +8,10 @@ int main() {
   // std::cout << me.getID() << std::endl;
   // std::cout << me.getFio() << std::endl;
 
-  for (int i = 0; i < 10; i++)
-  {
-    he.addMark(i);
-  }
+  he.addMark(5);
   
-  Student me(std::move(he));
+
   
- std::cout <<"as" << std::endl;
+ std::cout << he.getAverageMark() << std::endl;
   return 0;
 }

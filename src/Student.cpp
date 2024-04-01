@@ -56,3 +56,15 @@ void Student::addMark(int mark) {
     throw "Invalid mark";
   }
 }
+
+double Student::getAverageMark() const {
+  double res = 0;
+  for (auto mark: marks) {
+    res += mark;
+  }
+  return res / marks.size();
+}
+
+void Student::addToGroup(Group* group) {
+  this->group = group;
+}
