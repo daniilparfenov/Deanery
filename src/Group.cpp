@@ -37,3 +37,16 @@ void Group::addStudent(Student& student) {
     student.addToGroup(this);
   }
 }
+
+Student* Group::chooseHead() {
+  head = students[0];
+  for (int i = 1; i < students.size(); i++)
+  {
+    if (students[i]->getAverageMark() > head->getAverageMark())
+    {
+      head = students[i];
+    }
+  }
+  head->setAsHead();
+  return head;
+}

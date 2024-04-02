@@ -4,18 +4,21 @@ Student::Student() {
   id = -1;
   fio = "";
   group = nullptr;
+  this->isHead = false;
 }
 
 Student::Student(int id, std::string fio) {
   this->id = id;
   this->fio = fio;
   this->group = nullptr;
+  this->isHead = false;
 }
 
 Student::Student(const Student& other) {
   this->id = other.id;
   this->fio = other.fio;
   this->group = other.group;
+  this->isHead = other.isHead;
 
   this->marks.resize(other.marks.size());
   for (int i = 0; i < other.marks.size(); i++) {
@@ -27,6 +30,7 @@ Student::Student(Student&& other) {
   this->id = other.id;
   this->fio = std::move(other.fio);
   this->group = other.group;
+  this->isHead = other.isHead;
 
   this->marks = std::move(other.marks);
   other.group = nullptr;
@@ -71,4 +75,12 @@ void Student::addToGroup(Group* group) {
     this->group = group;
     group->addStudent(*this);
   }
+}
+
+bool Student::isHeadOfGroup() {
+  return isHead;
+}
+
+void Student::setAsHead() {
+  this->isHead = true;
 }

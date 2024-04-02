@@ -14,6 +14,7 @@ class Student {
   std::string fio;
   Group* group;
   std::vector<int> marks;
+  bool isHead;
 
  public:
   Student();
@@ -24,12 +25,13 @@ class Student {
   void addToGroup(Group* group);
   void addMark(int mark);
   double getAverageMark() const;
+  void setAsHead();
 
   std::string getFio() const;
   int getID() const;
   Group* getGroup() const;
   std::vector<int> getMarks() const;
-
+  bool isHeadOfGroup();
 };
 
 #endif  // STUDENT_H
