@@ -31,8 +31,7 @@ Group::Group(Group&& other) {
 }
 
 void Group::addStudent(Student& student) {
-  if (student.getGroup() != this)
-  {
+  if (student.getGroup() != this) {
     students.push_back(&student);
     student.addToGroup(this);
   }
@@ -40,13 +39,27 @@ void Group::addStudent(Student& student) {
 
 Student* Group::chooseHead() {
   head = students[0];
-  for (int i = 1; i < students.size(); i++)
-  {
-    if (students[i]->getAverageMark() > head->getAverageMark())
-    {
+  for (int i = 1; i < students.size(); i++) {
+    if (students[i]->getAverageMark() > head->getAverageMark()) {
       head = students[i];
     }
   }
   head->setAsHead();
   return head;
+}
+
+Student* Group::findStudent(const int ID) {
+  for (int i = 0; i < students.size(); i++) {
+    if (students[i]->getID() == ID) {
+      return students[i];
+    }
+  }
+}
+
+Student* Group::findStudent(const std::string& fio) {
+  for (int i = 0; i < students.size(); i++) {
+    if (students[i]->getFio() == fio) {
+      return students[i];
+    }
+  }
 }

@@ -23,7 +23,7 @@ class Group {
   
   void addStudent(Student& student);
   Student* chooseHead();
-  Student* findStudent(int ID);
+  Student* findStudent(const int ID);
   Student* findStudent(const std::string& fio);
   double getAverageMark();
   void expelStudent(Student& student);
