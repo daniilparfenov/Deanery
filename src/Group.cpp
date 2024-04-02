@@ -54,6 +54,7 @@ Student* Group::findStudent(const int ID) {
       return students[i];
     }
   }
+  return nullptr;
 }
 
 Student* Group::findStudent(const std::string& fio) {
@@ -61,5 +62,26 @@ Student* Group::findStudent(const std::string& fio) {
     if (students[i]->getFio() == fio) {
       return students[i];
     }
+  }
+  return nullptr;
+}
+
+double Group::getAverageMarkOfStudents() {
+  double res;
+  for (int i = 0; i < students.size(); i++) {
+    res += students[i]->getAverageMark();
+  }
+  return res / students.size();
+}
+
+void Group::expelStudent(Student& student) {
+  if (student.getGroup() == this) {
+    for (int i = 0; i < this->students.size(); i++) {
+      if (this->students[i]->getID() == student.id) {
+        this->students.erase(students.begin() + i);
+      }
+    }
+    student.group = nullptr;
+    student.isHead = false;
   }
 }

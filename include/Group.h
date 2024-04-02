@@ -25,7 +25,7 @@ class Group {
   Student* chooseHead();
   Student* findStudent(const int ID);
   Student* findStudent(const std::string& fio);
-  double getAverageMark();
+  double getAverageMarkOfStudents();
   void expelStudent(Student& student);
 };
 

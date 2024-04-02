@@ -9,6 +9,7 @@
 class Group;
 
 class Student {
+  friend class Group;
  private:
   int id;
   std::string fio;
