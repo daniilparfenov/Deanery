@@ -11,15 +11,17 @@
 class Deanery {
  private:
   std::vector<Group*> groups;
- public:
   void loadStudentsData();
   void loadGroupsData();
+ public:
+  void addGroup(Group* newGroup);
+  void loadData();
   void addRandomMarksForStudents();
-  void printStatistics();
+  void printStatistics() const;
   void transferStudentToOtherGroup(Student& student, Group& otherGroup);
   void fireStudents();
-  void saveData();
-  void printData();
+  void saveData() const;
+  void printData() const;
 };
 
 #endif // DEANERY_H

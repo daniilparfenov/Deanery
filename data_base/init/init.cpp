@@ -3,6 +3,7 @@
 #include <string>
 
 int main() {
+  setlocale(LC_ALL, "Russian");
   std::ifstream fileForInit("init.txt");
   std::ofstream outputFile;
 
@@ -12,7 +13,7 @@ int main() {
   int groupNumber = 4;
 
   while (std::getline(fileForInit, line)) {
-    outputFile << id << ' ' << line << " 23CST-" << groupNumber << ' ';
+    outputFile << id << ' ' << line << " 23КНТ-" << groupNumber << ' ';
     for (int i = 0; i < 10; i++) {
       outputFile << rand() % 11 << ' ';
     }

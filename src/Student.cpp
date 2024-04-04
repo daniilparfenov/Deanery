@@ -72,15 +72,23 @@ double Student::getAverageMark() const {
 void Student::addToGroup(Group* group) {
   if (this->group != group)
   {
-    this->group = group;
     group->addStudent(*this);
   }
 }
 
-bool Student::isHeadOfGroup() {
+bool Student::isHeadOfGroup() const {
   return isHead;
 }
 
 void Student::setAsHead() {
+  group->setHead(this);
   this->isHead = true;
 }
+
+void Student::setFio(std::string newFio) {
+  this->fio = newFio;
+}
+void Student::setID(int newID) {
+  this->id = newID;
+}
+

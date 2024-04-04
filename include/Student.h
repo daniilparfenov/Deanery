@@ -32,7 +32,10 @@ class Student {
   int getID() const;
   Group* getGroup() const;
   std::vector<int> getMarks() const;
-  bool isHeadOfGroup();
+  bool isHeadOfGroup() const;
+
+  void setFio(std::string newFio);
+  void setID(int newID);
 };
 
 #endif  // STUDENT_H

@@ -27,6 +27,15 @@ class Group {
   Student* findStudent(const std::string& fio);
   double getAverageMarkOfStudents();
   void expelStudent(Student& student);
+
+  void setTitle(std::string newTitle);
+  void setSpec(std::string newSpec);
+  void setHead(Student* newHead);
+
+  std::string getTitle() const;
+  Student* getHead() const;
+  std::string getSpec() const;
+  std::vector<Student*> getStudents() const;
 };
 
 #endif  // GROUP_H

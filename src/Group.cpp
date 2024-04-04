@@ -1,4 +1,4 @@
-#include "Group.h"
+#include "..\include\Group.h"
 
 Group::Group() {
   title = "";
@@ -33,7 +33,7 @@ Group::Group(Group&& other) {
 void Group::addStudent(Student& student) {
   if (student.getGroup() != this) {
     students.push_back(&student);
-    student.addToGroup(this);
+    student.group = this;
   }
 }
 
@@ -84,4 +84,39 @@ void Group::expelStudent(Student& student) {
     student.group = nullptr;
     student.isHead = false;
   }
+}
+
+void Group::setTitle(std::string newTitle) {
+  this->title = newTitle;
+}
+
+void Group::setSpec(std::string newSpec) {
+  this->spec = newSpec;
+}
+
+void Group::setHead(Student* newHead) {
+  if (this->head != newHead)
+  { 
+    if (this->head != nullptr) {
+      this->head->isHead = false;
+    }
+    this->head = newHead;
+    this->head->isHead = true;
+  }
+}
+
+std::string Group::getTitle() const {
+    return title;
+}
+
+Student* Group::getHead() const {
+  return head;
+}
+
+std::string Group::getSpec() const {
+  return spec;
+}
+
+std::vector<Student*> Group::getStudents() const {
+  return students;
 }
