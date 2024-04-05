@@ -13,6 +13,8 @@ int main() {
   deanery.loadData();
   std::cout << "OK" << std::endl;
   deanery.printData();
+  deanery.addRandomMarksForStudents(10);
+  std::cout << "OK" << std::endl;
   deanery.saveData();
   
   return 0;

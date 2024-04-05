@@ -1,10 +1,10 @@
 #include "..\include\Deanery.h"
 
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <ctime>
 
 #include "..\include\Group.h"
 #include "..\include\Student.h"
@@ -115,14 +115,11 @@ void Deanery::saveData() const {
 void Deanery::saveStudentsData() const {
   std::ofstream FILE("../data_base/students.txt");
 
-  for (auto& group: groups)
-  {
-    for (auto& student: group->getStudents())
-    {
+  for (auto& group : groups) {
+    for (auto& student : group->getStudents()) {
       FILE << student->getID() << ' ' << student->getFio() << ' '
            << group->getTitle() << ' ';
-      for (auto& mark: student->getMarks())
-      {
+      for (auto& mark : student->getMarks()) {
         FILE << mark << ' ';
       }
       FILE << std::endl;
@@ -134,15 +131,34 @@ void Deanery::saveStudentsData() const {
 void Deanery::saveGroupsData() const {
   std::ofstream FILE("../data_base/groups.txt");
 
-  for (auto& group: groups)
-  {
-    FILE << group->getTitle() << ' '
-         << group->getSpec() << ' '
+  for (auto& group : groups) {
+    FILE << group->getTitle() << ' ' << group->getSpec() << ' '
          << group->getHead()->getFio() << std::endl;
   }
- FILE.close(); 
+  FILE.close();
 }
 
-// void Deanery::addRandomMarksForStudents(int numberOfMarks) {
-//   std::srand(std::time(0));
-// }
+void Deanery::addRandomMarksForStudents(int numberOfMarks) {
+  std::srand(std::time(0));
+
+  for (auto& group : groups) {
+    for (auto& student : group->getStudents()) {
+      for (int i = 0; i < numberOfMarks; i++) {
+        student->addMark(rand() % 11);
+      }
+    }
+  }
+}
+
+void Deanery::replaceAllMarksWithRandom(int numberOfMarks) {
+  std::srand(std::time(0));
+
+  for (auto& group : groups) {
+    for (auto& student : group->getStudents()) {
+      student->deleteAllMarks();
+      for (int i = 0; i < numberOfMarks; i++) {
+        student->addMark(rand() % 11);
+      }
+    }
+  }
+}

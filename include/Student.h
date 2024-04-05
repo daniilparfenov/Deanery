@@ -36,6 +36,7 @@ class Student {
 
   void setFio(std::string newFio);
   void setID(int newID);
+  void deleteAllMarks();
 };
 
 #endif  // STUDENT_H

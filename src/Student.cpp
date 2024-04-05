@@ -92,3 +92,6 @@ void Student::setID(int newID) {
   this->id = newID;
 }
 
+void Student::deleteAllMarks() {
+  this->marks.clear();
+}

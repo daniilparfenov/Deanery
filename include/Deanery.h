@@ -19,6 +19,7 @@ class Deanery {
   void addGroup(Group* newGroup);
   void loadData();
   void addRandomMarksForStudents(int numberOfMarks);
+  void replaceAllMarksWithRandom(int numberOfMarks);
   void printStatistics() const;
   void transferStudentToOtherGroup(Student& student, Group& otherGroup);
   void fireStudents();
