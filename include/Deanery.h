@@ -21,7 +21,8 @@ class Deanery {
   void addRandomMarksForStudents(int numberOfMarks);
   void replaceAllMarksWithRandom(int numberOfMarks);
   void printStatistics() const;
-  void transferStudentToOtherGroup(Student& student, Group& otherGroup);
+  void transferStudentToOtherGroup(int studentsID, std::string titleOfOtherGroup);
+  void transferStudentToOtherGroup(std::string fioOfStudent, std::string titleOfOtherGroup);
   void fireStudents();
   void saveData() const;
   void printData() const;

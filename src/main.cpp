@@ -15,7 +15,8 @@ int main() {
   // deanery.printData();
   // deanery.printStatistics();
   // deanery.addRandomMarksForStudents(10);
-  deanery.fireStudents();
+  // deanery.fireStudents();
+  deanery.transferStudentToOtherGroup("Парфенов Даниил Александрович", "23КНТ-6");
   std::cout << "OK" << std::endl;
   deanery.printData();
   deanery.saveData();

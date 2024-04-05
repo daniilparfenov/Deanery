@@ -201,3 +201,51 @@ void Deanery::fireStudents() {
     }
   }
 }
+
+void Deanery::transferStudentToOtherGroup(int studentsID,
+                                          std::string titleOfOtherGroup) {
+  Student* student = nullptr;
+  Group* otherGroup = nullptr;
+
+  for (auto& group : groups) {
+    if (group->getTitle() == titleOfOtherGroup) {
+      otherGroup = group;
+    }
+    student = group->findStudent(studentsID);
+    if (student != nullptr) {
+      group->expelStudent(*student);
+      break;
+    }
+  }
+  otherGroup->addStudent(*student);
+}
+
+void Deanery::transferStudentToOtherGroup(std::string fioOfStudent,
+                                          std::string titleOfOtherGroup) {
+  Student* student = nullptr;
+  Group* otherGroup = nullptr;
+
+  for (auto& group : groups) {
+    if (group->getTitle() == titleOfOtherGroup) {
+      otherGroup = group;
+    }
+
+    if (student == nullptr) {
+      student = group->findStudent(fioOfStudent);
+    }
+
+    if (student != nullptr) {
+      group->expelStudent(*student);
+    }
+
+    if (otherGroup != nullptr && student != nullptr) {
+      break;
+    }
+  }
+
+  if (otherGroup != nullptr) {
+    otherGroup->addStudent(*student);
+  } else {
+    std::cout << "There is no group " + titleOfOtherGroup << std::endl;
+  }
+}
