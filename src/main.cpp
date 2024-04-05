@@ -1,17 +1,19 @@
-#include <iostream>
-#include "Student.h"
-#include "Deanery.h"
-#include <cstdlib>  
 #include <Windows.h>
 
+#include <cstdlib>
+#include <iostream>
+
+#include "Deanery.h"
+#include "Student.h"
+
 int main() {
-  setlocale(LC_ALL, "");
-  std::system("chcp 1251");
-  SetConsoleCP(1251);
-  SetConsoleOutputCP(1251);
+  std::system("chcp 65001");
+
   Deanery deanery;
   deanery.loadData();
   std::cout << "OK" << std::endl;
   deanery.printData();
+  deanery.saveData();
+  
   return 0;
 }

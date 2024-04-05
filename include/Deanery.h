@@ -13,10 +13,12 @@ class Deanery {
   std::vector<Group*> groups;
   void loadStudentsData();
   void loadGroupsData();
+  void saveStudentsData() const;
+  void saveGroupsData() const;
  public:
   void addGroup(Group* newGroup);
   void loadData();
-  void addRandomMarksForStudents();
+  void addRandomMarksForStudents(int numberOfMarks);
   void printStatistics() const;
   void transferStudentToOtherGroup(Student& student, Group& otherGroup);
   void fireStudents();
