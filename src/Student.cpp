@@ -36,25 +36,21 @@ Student::Student(Student&& other) {
   other.group = nullptr;
 }
 
-std::string Student::getFio() const{
-  return fio;
-}
+// Student::~Student() {
+//   id = -1;
+//   group = nullptr;
+// }
 
-int Student::getID() const {
-  return id;
-}
+std::string Student::getFio() const { return fio; }
 
-Group* Student::getGroup() const {
-  return group;
-}
+int Student::getID() const { return id; }
 
-std::vector<int> Student::getMarks() const {
-  return marks;
-}
+Group* Student::getGroup() const { return group; }
+
+std::vector<int> Student::getMarks() const { return marks; }
 
 void Student::addMark(int mark) {
-  if (0 <= mark && mark <= 10)
-  {
+  if (0 <= mark && mark <= 10) {
     marks.push_back(mark);
   } else {
     throw "Invalid mark";
@@ -63,35 +59,26 @@ void Student::addMark(int mark) {
 
 double Student::getAverageMark() const {
   double res = 0;
-  for (auto mark: marks) {
+  for (auto mark : marks) {
     res += mark;
   }
   return res / marks.size();
 }
 
 void Student::addToGroup(Group* group) {
-  if (this->group != group)
-  {
+  if (this->group != group) {
     group->addStudent(*this);
   }
 }
 
-bool Student::isHeadOfGroup() const {
-  return isHead;
-}
+bool Student::isHeadOfGroup() const { return isHead; }
 
 void Student::setAsHead() {
   group->setHead(this);
   this->isHead = true;
 }
 
-void Student::setFio(std::string newFio) {
-  this->fio = newFio;
-}
-void Student::setID(int newID) {
-  this->id = newID;
-}
+void Student::setFio(std::string newFio) { this->fio = newFio; }
+void Student::setID(int newID) { this->id = newID; }
 
-void Student::deleteAllMarks() {
-  this->marks.clear();
-}
+void Student::deleteAllMarks() { this->marks.clear(); }

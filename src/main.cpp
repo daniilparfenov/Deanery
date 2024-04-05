@@ -12,10 +12,13 @@ int main() {
   Deanery deanery;
   deanery.loadData();
   std::cout << "OK" << std::endl;
-  deanery.printData();
-  deanery.addRandomMarksForStudents(10);
+  // deanery.printData();
+  // deanery.printStatistics();
+  // deanery.addRandomMarksForStudents(10);
+  deanery.fireStudents();
   std::cout << "OK" << std::endl;
+  deanery.printData();
   deanery.saveData();
-  
+
   return 0;
 }

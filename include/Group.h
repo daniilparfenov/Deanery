@@ -20,7 +20,7 @@ class Group {
   Group(const std::string& title, const std::string& spec);
   Group(Group& other);
   Group(Group&& other);
-  
+
   void addStudent(Student& student);
   Student* chooseHead();
   Student* findStudent(const int ID);

@@ -7,7 +7,6 @@
 #include "Group.h"
 #include "Student.h"
 
-
 class Deanery {
  private:
   std::vector<Group*> groups;
@@ -15,6 +14,7 @@ class Deanery {
   void loadGroupsData();
   void saveStudentsData() const;
   void saveGroupsData() const;
+
  public:
   void addGroup(Group* newGroup);
   void loadData();
@@ -27,4 +27,4 @@ class Deanery {
   void printData() const;
 };
 
-#endif // DEANERY_H
+#endif  // DEANERY_H

@@ -93,7 +93,13 @@ void Deanery::printData() const {
   for (Group* group : groups) {
     std::cout << "Title: " << group->getTitle() << std::endl;
     std::cout << "Speciality: " << group->getSpec() << std::endl;
-    std::cout << "Headman: " << group->getHead()->getFio() << std::endl;
+    std::cout << "Headman: ";
+    if (group->getHead() != nullptr) {
+      std::cout << group->getHead()->getFio() << std::endl;
+    } else {
+      std::cout << "None" << std::endl;
+    }
+
     std::cout << "Students:" << std::endl;
     for (const Student* student : group->getStudents()) {
       std::cout << "FIO: " << student->getFio() << std::endl;
@@ -158,6 +164,39 @@ void Deanery::replaceAllMarksWithRandom(int numberOfMarks) {
       student->deleteAllMarks();
       for (int i = 0; i < numberOfMarks; i++) {
         student->addMark(rand() % 11);
+      }
+    }
+  }
+}
+
+void Deanery::printStatistics() const {
+  for (auto& group : groups) {
+    std::cout << "Title of the group: " << group->getTitle() << std::endl;
+    std::cout << "Speciality: " << group->getSpec() << std::endl;
+
+    std::cout << "Headman: ";
+    if (group->getHead() != nullptr) {
+      std::cout << group->getHead()->getFio() << std::endl;
+    } else {
+      std::cout << "None" << std::endl;
+    }
+
+    std::cout << "Average mark of students in the group = "
+              << group->getAverageMarkOfStudents() << std::endl;
+    std::cout << "Statistics of students in the group: " << std::endl;
+    for (auto& student : group->getStudents()) {
+      std::cout << "FIO: " << student->getFio() << std::endl;
+      std::cout << "Average mark: " << student->getAverageMark() << std::endl;
+    }
+  }
+}
+
+void Deanery::fireStudents() {
+  for (auto& group : groups) {
+    for (auto& student : group->getStudents()) {
+      if (student->getAverageMark() < 4) {
+        group->expelStudent(*student);
+        delete student;
       }
     }
   }

@@ -10,6 +10,7 @@ class Group;
 
 class Student {
   friend class Group;
+
  private:
   int id;
   std::string fio;
@@ -22,6 +23,7 @@ class Student {
   Student(int id, std::string fio);
   Student(const Student& other);
   Student(Student&& other);
+  // ~Student();
 
   void addToGroup(Group* group);
   void addMark(int mark);

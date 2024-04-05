@@ -79,24 +79,23 @@ void Group::expelStudent(Student& student) {
     for (int i = 0; i < this->students.size(); i++) {
       if (this->students[i]->getID() == student.id) {
         this->students.erase(students.begin() + i);
+        break;
       }
     }
     student.group = nullptr;
-    student.isHead = false;
+    if (student.isHead) {
+      student.isHead = false;
+      this->head = nullptr;
+    }
   }
 }
 
-void Group::setTitle(std::string newTitle) {
-  this->title = newTitle;
-}
+void Group::setTitle(std::string newTitle) { this->title = newTitle; }
 
-void Group::setSpec(std::string newSpec) {
-  this->spec = newSpec;
-}
+void Group::setSpec(std::string newSpec) { this->spec = newSpec; }
 
 void Group::setHead(Student* newHead) {
-  if (this->head != newHead)
-  { 
+  if (this->head != newHead) {
     if (this->head != nullptr) {
       this->head->isHead = false;
     }
@@ -105,18 +104,10 @@ void Group::setHead(Student* newHead) {
   }
 }
 
-std::string Group::getTitle() const {
-    return title;
-}
+std::string Group::getTitle() const { return title; }
 
-Student* Group::getHead() const {
-  return head;
-}
+Student* Group::getHead() const { return head; }
 
-std::string Group::getSpec() const {
-  return spec;
-}
+std::string Group::getSpec() const { return spec; }
 
-std::vector<Student*> Group::getStudents() const {
-  return students;
-}
+std::vector<Student*> Group::getStudents() const { return students; }
