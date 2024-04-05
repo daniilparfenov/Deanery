@@ -9,6 +9,15 @@
 #include "..\include\Group.h"
 #include "..\include\Student.h"
 
+
+Deanery::~Deanery() {
+  for (auto& group: groups)
+  {
+    delete group;
+  }
+  
+}
+
 void Deanery::loadData() {
   loadGroupsData();
   loadStudentsData();
@@ -102,15 +111,16 @@ void Deanery::printData() const {
 
     std::cout << "Students:" << std::endl;
     for (const Student* student : group->getStudents()) {
+      std::cout << std::endl;
       std::cout << "\tFIO: " << student->getFio() << std::endl;
       std::cout << "\tID: " << student->getID() << std::endl;
       std::cout << "\tMarks: ";
       for (const auto& mark : student->getMarks()) {
         std::cout << mark << ' ';
       }
-      std::cout << std::endl << std::endl;
+      std::cout << std::endl;
     }
-    std::cout << "===========================================" << std::endl;
+    std::cout << "===========================================" << std::endl << std::endl;
   }
 }
 
@@ -186,15 +196,15 @@ void Deanery::printStatistics() const {
               << group->getAverageMarkOfStudents() << std::endl;
     std::cout << "Statistics of students in the group: " << std::endl;
     for (auto& student : group->getStudents()) {
+      std::cout << std::endl;
       std::cout << "\tFIO: " << student->getFio() << std::endl;
       std::cout << "\tMarks: ";
       for (const auto& mark : student->getMarks()) {
         std::cout << mark << ' ';
       }
-      std::cout << "\tAverage mark: " << student->getAverageMark() << std::endl;
-      std::cout << std::endl;
+      std::cout << "\tAverage mark = " << student->getAverageMark() << std::endl;
     }
-    std::cout << "===========================================" << std::endl;
+    std::cout << "===========================================" << std::endl << std::endl;
   }
 }
 

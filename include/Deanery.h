@@ -16,6 +16,7 @@ class Deanery {
   void saveGroupsData() const;
 
  public:
+  ~Deanery();
   void addGroup(Group* newGroup);
   void loadData();
   void addRandomMarksForStudents(int numberOfMarks);

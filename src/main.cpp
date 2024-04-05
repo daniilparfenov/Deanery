@@ -5,7 +5,8 @@
 int main() {
   std::system("chcp 65001");
 
-  Deanery deanery; 
+  Deanery deanery;
+  deanery.loadData();
 
   return 0;
 }

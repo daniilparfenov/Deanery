@@ -30,6 +30,13 @@ Group::Group(Group&& other) {
   other.spec = "";
 }
 
+Group::~Group() {
+  for (auto& student: students)
+  {
+    delete student;
+  }
+}
+
 void Group::addStudent(Student& student) {
   if (student.getGroup() != this) {
     students.push_back(&student);
