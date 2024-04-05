@@ -36,11 +36,6 @@ Student::Student(Student&& other) {
   other.group = nullptr;
 }
 
-// Student::~Student() {
-//   id = -1;
-//   group = nullptr;
-// }
-
 std::string Student::getFio() const { return fio; }
 
 int Student::getID() const { return id; }
