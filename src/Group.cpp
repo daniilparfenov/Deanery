@@ -31,8 +31,7 @@ Group::Group(Group&& other) {
 }
 
 Group::~Group() {
-  for (auto& student: students)
-  {
+  for (auto& student : students) {
     delete student;
   }
 }

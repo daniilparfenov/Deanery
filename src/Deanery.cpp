@@ -9,13 +9,10 @@
 #include "..\include\Group.h"
 #include "..\include\Student.h"
 
-
 Deanery::~Deanery() {
-  for (auto& group: groups)
-  {
+  for (auto& group : groups) {
     delete group;
   }
-  
 }
 
 void Deanery::loadData() {
@@ -120,7 +117,10 @@ void Deanery::printData() const {
       }
       std::cout << std::endl;
     }
-    std::cout << "===========================================" << std::endl << std::endl;
+    std::cout << "============================================================="
+                 "============"
+              << std::endl
+              << std::endl;
   }
 }
 
@@ -202,9 +202,13 @@ void Deanery::printStatistics() const {
       for (const auto& mark : student->getMarks()) {
         std::cout << mark << ' ';
       }
-      std::cout << "\tAverage mark = " << student->getAverageMark() << std::endl;
+      std::cout << "\tAverage mark = " << student->getAverageMark()
+                << std::endl;
     }
-    std::cout << "===========================================" << std::endl << std::endl;
+    std::cout << "============================================================="
+                 "============"
+              << std::endl
+              << std::endl;
   }
 }
 
@@ -228,15 +232,31 @@ void Deanery::transferStudentToOtherGroup(int studentsID,
     if (group->getTitle() == titleOfOtherGroup) {
       otherGroup = group;
     }
-    student = group->findStudent(studentsID);
+
+    if (student == nullptr) {
+      student = group->findStudent(studentsID);
+    }
+
     if (student != nullptr) {
       group->expelStudent(*student);
+    }
+
+    if (otherGroup != nullptr && student != nullptr) {
       break;
     }
   }
-  otherGroup->addStudent(*student);
-}
 
+  if (student == nullptr) {
+    std::cout << "There is no this student" << std::endl;
+    return;
+  }
+
+  if (otherGroup != nullptr && student != nullptr) {
+    otherGroup->addStudent(*student);
+  } else {
+    std::cout << "There is no group called so" << std::endl;
+  }
+}
 void Deanery::transferStudentToOtherGroup(std::string fioOfStudent,
                                           std::string titleOfOtherGroup) {
   Student* student = nullptr;
@@ -260,9 +280,14 @@ void Deanery::transferStudentToOtherGroup(std::string fioOfStudent,
     }
   }
 
-  if (otherGroup != nullptr) {
+  if (student == nullptr) {
+    std::cout << "There is no this student" << std::endl;
+    return;
+  }
+
+  if (otherGroup != nullptr && student != nullptr) {
     otherGroup->addStudent(*student);
   } else {
-    std::cout << "There is no group " + titleOfOtherGroup << std::endl;
+    std::cout << "There is no group called so " << std::endl;
   }
 }
