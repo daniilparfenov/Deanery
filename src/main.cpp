@@ -43,16 +43,25 @@ int main() {
     std::cin >> choice;
     switch (choice) {
       case 1:
-        std::cout << "Data loading..." << std::endl;
-        deanery.loadData();
-        std::cout << "Data loaded successfully!" << std::endl;
-        isDataLoaded = true;
+        if (!isDataLoaded) {
+          std::cout << "Data loading..." << std::endl;
+          deanery.loadData();
+          std::cout << "Data loaded successfully!" << std::endl;
+          isDataLoaded = true;
+        } else {
+          std::cout << "Data is already loaded!" << std::endl;
+        }
         break;
       case 2:
-        std::cout << "Data saving..." << std::endl;
-        deanery.saveData();
-        std::cout << "Data saved successfully!" << std::endl;
-        isDataSaved = true;
+        if (!isDataSaved) {
+          std::cout << "Data saving..." << std::endl;
+          deanery.saveData();
+          std::cout << "Data saved successfully!" << std::endl;
+          isDataSaved = true;
+        } else {
+          std::cout << "Data is already saved!" << std::endl;
+        }
+
         break;
       case 3:
         if (isDataLoaded) {
@@ -73,12 +82,14 @@ int main() {
         std::cout << "Number of marks: ";
         std::cin >> numberOfMarks;
         deanery.addRandomMarksForStudents(numberOfMarks);
+        isDataSaved = false;
         break;
       case 6:
         numberOfMarks = 0;
         std::cout << "Number of marks: ";
         std::cin >> numberOfMarks;
         deanery.replaceAllMarksWithRandom(numberOfMarks);
+        isDataSaved = false;
         break;
       case 7:
         identificatorOfStudent = "";
@@ -96,6 +107,7 @@ int main() {
           deanery.transferStudentToOtherGroup(identificatorOfStudent,
                                               titleOfOtherGroup);
         }
+        isDataSaved = false;
         break;
       case 8:
         deanery.fireStudents();

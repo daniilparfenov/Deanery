@@ -33,15 +33,18 @@ void Deanery::loadGroupsData() {
   std::string fioOfHead;
   while (std::getline(FILE, line)) {
     std::istringstream lineStream(line);
-    lineStream >> title >> spec >> surNameOfHead >> nameOfHead >> midNameOfHead;
-
+    lineStream >> title >> spec >> surNameOfHead;
     Group* newGroup = new Group(title, spec);
-    fioOfHead = surNameOfHead + ' ' + nameOfHead + ' ' + midNameOfHead;
-    Student* head = new Student(-1, fioOfHead);
 
+    if (surNameOfHead != "None")
+    {
+      lineStream >> nameOfHead >> midNameOfHead;
+      fioOfHead = surNameOfHead + ' ' + nameOfHead + ' ' + midNameOfHead;
+      Student* head = new Student(-1, fioOfHead);
+      head->addToGroup(newGroup);
+      head->setAsHead();
+    }
     this->addGroup(newGroup);
-    head->addToGroup(newGroup);
-    head->setAsHead();
   }
 
   FILE.close();
@@ -73,7 +76,7 @@ void Deanery::loadStudentsData() {
     for (int i = 0; i < groups.size(); i++) {
       if (groups[i]->getTitle() == groupName) {
         Student* head = groups[i]->getHead();
-        if (head->getFio() == fio) {
+        if (head != nullptr && head->getFio() == fio) {
           head->setID(id);
           for (int& mark : newStudent->getMarks()) {
             head->addMark(mark);
@@ -149,8 +152,13 @@ void Deanery::saveGroupsData() const {
   std::ofstream FILE("../data_base/groups.txt");
 
   for (auto& group : groups) {
-    FILE << group->getTitle() << ' ' << group->getSpec() << ' '
-         << group->getHead()->getFio() << std::endl;
+    FILE << group->getTitle() << ' ' << group->getSpec() << ' ';
+    if (group->getHead() != nullptr)
+    {
+      FILE << group->getHead()->getFio() << std::endl;
+    } else {
+      FILE << "None" << std::endl;
+    }
   }
   FILE.close();
 }
