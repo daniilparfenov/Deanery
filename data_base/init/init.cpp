@@ -1,3 +1,4 @@
+// Copyright 2024 by Parfenov Daniil
 #include <fstream>
 #include <random>
 #include <string>
@@ -28,16 +29,12 @@ int main() {
 
   outputFile.open("../groups.txt");
   std::string HEADS[6] = {
-    "Zaharchenko Yana Aleksandrovna",
-    "Majorova Mariya Vadimovna",
-    "Miheeva Alina Andreevna",
-    "Makshaeva Melanya Aleksandrovna", 
-    "Batyaev Egor Konstantinovich",
-    "Cirulev Dmitrij Aleksandrovich"
-  };
-  for (int i = 3; i < 9; i++)
-  {
-    outputFile << ("23KNT-" + std::to_string(i+1)) << " IMIKN " << HEADS[i-3] << std::endl;
+      "Zaharchenko Yana Aleksandrovna", "Majorova Mariya Vadimovna",
+      "Miheeva Alina Andreevna",        "Makshaeva Melanya Aleksandrovna",
+      "Batyaev Egor Konstantinovich",   "Cirulev Dmitrij Aleksandrovich"};
+  for (int i = 3; i < 9; i++) {
+    outputFile << ("23KNT-" + std::to_string(i + 1)) << " IMIKN "
+               << HEADS[i - 3] << std::endl;
   }
   outputFile.close();
   return 0;
