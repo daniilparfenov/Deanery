@@ -1,8 +1,10 @@
-#pragma once
-#ifndef DEANERY_H
-#define DEANERY_H
+
+// Copyright 2024 by Parfenov Daniil#pragma once
+#ifndef INCLUDE_DEANERY_H_
+#define INCLUDE_DEANERY_H_
 
 #include <vector>
+#include <string>
 
 #include "Group.h"
 #include "Student.h"
@@ -31,4 +33,4 @@ class Deanery {
   void printData() const;
 };
 
-#endif  // DEANERY_H
+#endif  // INCLUDE_DEANERY_H_

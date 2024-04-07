@@ -1,3 +1,4 @@
+// Copyright 2024 by Parfenov Daniil
 #include "..\include\Deanery.h"
 
 #include <ctime>
@@ -81,7 +82,7 @@ void Deanery::loadStudentsData() {
             head->addMark(mark);
           }
         } else {
-          groups[i]->addStudent(*newStudent);
+          groups[i]->addStudent(newStudent);
         }
         break;
       }
@@ -223,7 +224,7 @@ void Deanery::fireStudents() {
   for (auto& group : groups) {
     for (auto& student : group->getStudents()) {
       if (student->getAverageMark() < 4) {
-        group->expelStudent(*student);
+        group->expelStudent(student);
         countOfFiredStudents++;
         std::cout << "Student " << student->getFio() << " was fired"
                   << std::endl;
@@ -250,7 +251,7 @@ void Deanery::transferStudentToOtherGroup(int studentsID,
     }
 
     if (student != nullptr) {
-      group->expelStudent(*student);
+      group->expelStudent(student);
     }
 
     if (otherGroup != nullptr && student != nullptr) {
@@ -264,7 +265,7 @@ void Deanery::transferStudentToOtherGroup(int studentsID,
   }
 
   if (otherGroup != nullptr && student != nullptr) {
-    otherGroup->addStudent(*student);
+    otherGroup->addStudent(student);
   } else {
     std::cout << "There is no group called so" << std::endl;
   }
@@ -284,7 +285,7 @@ void Deanery::transferStudentToOtherGroup(std::string fioOfStudent,
     }
 
     if (student != nullptr) {
-      group->expelStudent(*student);
+      group->expelStudent(student);
     }
 
     if (otherGroup != nullptr && student != nullptr) {
@@ -298,7 +299,7 @@ void Deanery::transferStudentToOtherGroup(std::string fioOfStudent,
   }
 
   if (otherGroup != nullptr && student != nullptr) {
-    otherGroup->addStudent(*student);
+    otherGroup->addStudent(student);
   } else {
     std::cout << "There is no group called so " << std::endl;
   }

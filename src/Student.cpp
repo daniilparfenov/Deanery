@@ -1,3 +1,4 @@
+// Copyright 2024 by Parfenov Daniil
 #include "..\include\Student.h"
 
 Student::Student() {
@@ -62,7 +63,7 @@ double Student::getAverageMark() const {
 
 void Student::addToGroup(Group* group) {
   if (this->group != group) {
-    group->addStudent(*this);
+    group->addStudent(this);
   }
 }
 

@@ -1,6 +1,6 @@
-#pragma once
-#ifndef STUDENT_H
-#define STUDENT_H
+// Copyright 2024 by Parfenov Daniil#pragma once
+#ifndef INCLUDE_STUDENT_H_
+#define INCLUDE_STUDENT_H_
 
 #include <string>
 #include <vector>
@@ -41,4 +41,4 @@ class Student {
   void deleteAllMarks();
 };
 
-#endif  // STUDENT_H
+#endif  // INCLUDE_STUDENT_H_

@@ -1,3 +1,4 @@
+// Copyright 2024 by Parfenov Daniil
 #pragma once
 #ifndef GROUP_H
 #define GROUP_H
@@ -18,16 +19,16 @@ class Group {
  public:
   Group();
   Group(const std::string& title, const std::string& spec);
-  Group(Group& other);
+  Group(const Group& other);
   Group(Group&& other);
   ~Group();
 
-  void addStudent(Student& student);
+  void addStudent(Student* student);
   Student* chooseHead();
   Student* findStudent(const int ID);
   Student* findStudent(const std::string& fio);
   double getAverageMarkOfStudents();
-  void expelStudent(Student& student);
+  void expelStudent(Student* student);
 
   void setTitle(std::string newTitle);
   void setSpec(std::string newSpec);

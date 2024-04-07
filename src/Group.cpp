@@ -1,3 +1,4 @@
+// Copyright 2024 by Parfenov Daniil
 #include "..\include\Group.h"
 
 Group::Group() {
@@ -12,7 +13,7 @@ Group::Group(const std::string& title, const std::string& spec) {
   this->head = nullptr;
 }
 
-Group::Group(Group& other) {
+Group::Group(const Group& other) {
   title = other.title;
   spec = other.spec;
   students = other.students;
@@ -36,10 +37,10 @@ Group::~Group() {
   }
 }
 
-void Group::addStudent(Student& student) {
-  if (student.getGroup() != this) {
-    students.push_back(&student);
-    student.group = this;
+void Group::addStudent(Student* student) {
+  if (student->getGroup() != this) {
+    students.push_back(student);
+    student->group = this;
   }
 }
 
@@ -80,17 +81,17 @@ double Group::getAverageMarkOfStudents() {
   return res / students.size();
 }
 
-void Group::expelStudent(Student& student) {
-  if (student.getGroup() == this) {
+void Group::expelStudent(Student* student) {
+  if (student->getGroup() == this) {
     for (int i = 0; i < this->students.size(); i++) {
-      if (this->students[i]->getID() == student.id) {
+      if (this->students[i]->getID() == student->id) {
         this->students.erase(students.begin() + i);
         break;
       }
     }
-    student.group = nullptr;
-    if (student.isHead) {
-      student.isHead = false;
+    student->group = nullptr;
+    if (student->isHead) {
+      student->isHead = false;
       this->head = nullptr;
     }
   }

@@ -1,5 +1,4 @@
-#include <Windows.h>
-
+// Copyright 2024 by Parfenov Daniil
 #include <iostream>
 
 #include "Deanery.h"
