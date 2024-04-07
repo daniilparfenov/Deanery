@@ -36,8 +36,7 @@ void Deanery::loadGroupsData() {
     lineStream >> title >> spec >> surNameOfHead;
     Group* newGroup = new Group(title, spec);
 
-    if (surNameOfHead != "None")
-    {
+    if (surNameOfHead != "None") {
       lineStream >> nameOfHead >> midNameOfHead;
       fioOfHead = surNameOfHead + ' ' + nameOfHead + ' ' + midNameOfHead;
       Student* head = new Student(-1, fioOfHead);
@@ -153,8 +152,7 @@ void Deanery::saveGroupsData() const {
 
   for (auto& group : groups) {
     FILE << group->getTitle() << ' ' << group->getSpec() << ' ';
-    if (group->getHead() != nullptr)
-    {
+    if (group->getHead() != nullptr) {
       FILE << group->getHead()->getFio() << std::endl;
     } else {
       FILE << "None" << std::endl;
@@ -221,14 +219,20 @@ void Deanery::printStatistics() const {
 }
 
 void Deanery::fireStudents() {
+  int countOfFiredStudents = 0;
   for (auto& group : groups) {
     for (auto& student : group->getStudents()) {
       if (student->getAverageMark() < 4) {
         group->expelStudent(*student);
+        countOfFiredStudents++;
+        std::cout << "Student " << student->getFio() << " was fired"
+                  << std::endl;
         delete student;
       }
     }
   }
+  std::cout << "Total count of fired students = " << countOfFiredStudents
+            << std::endl;
 }
 
 void Deanery::transferStudentToOtherGroup(int studentsID,

@@ -36,7 +36,6 @@ int main() {
   std::string identificatorOfStudent, titleOfOtherGroup;
   int numberOfMarks = 0;
 
-
   while (!isTimeToExit) {
     printMenu();
     std::cin >> choice;
