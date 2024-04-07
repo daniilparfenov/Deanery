@@ -13,7 +13,7 @@ int main() {
   int groupNumber = 4;
 
   while (std::getline(fileForInit, line)) {
-    outputFile << id << ' ' << line << " 23КНТ-" << groupNumber << ' ';
+    outputFile << id << ' ' << line << " 23KNT-" << groupNumber << ' ';
     for (int i = 0; i < 10; i++) {
       outputFile << rand() % 11 << ' ';
     }
@@ -28,16 +28,16 @@ int main() {
 
   outputFile.open("../groups.txt");
   std::string HEADS[6] = {
-    "Захарченко Яна Александровна",
-    "Майорова Мария Вадимовна",
-    "Михеева Алина Андреевна",
-    "Макшаева Меланья Александровна", 
-    "Батяев Егор Константинович",
-    "Цирулев Дмитрий Александрович"
+    "Zaharchenko Yana Aleksandrovna",
+    "Majorova Mariya Vadimovna",
+    "Miheeva Alina Andreevna",
+    "Makshaeva Melanya Aleksandrovna", 
+    "Batyaev Egor Konstantinovich",
+    "Cirulev Dmitrij Aleksandrovich"
   };
   for (int i = 3; i < 9; i++)
   {
-    outputFile << ("23КНТ-" + std::to_string(i+1)) << " ИМИКН " << HEADS[i-3] << std::endl;
+    outputFile << ("23KNT-" + std::to_string(i+1)) << " IMIKN " << HEADS[i-3] << std::endl;
   }
   outputFile.close();
   return 0;

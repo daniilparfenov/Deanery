@@ -5,6 +5,7 @@
 #include "Deanery.h"
 
 void printMenu() {
+  std::cout << std::endl << std::endl;
   std::cout << "============================ Deanery Project "
                "============================"
             << std::endl;
@@ -25,18 +26,16 @@ void printMenu() {
 }
 
 int main() {
-  // converting console encoding to UTF-8
-  std::system("chcp 65001");
-
   Deanery deanery;
 
   bool isTimeToExit = false;
   bool isDataSaved = false;
   bool isDataLoaded = false;
   int choice = -1;
-  char choiceForExit = ' ';
-  std::string identificatorOfStudent = "", titleOfOtherGroup = "";
+  char answer = ' ';
+  std::string identificatorOfStudent, titleOfOtherGroup;
   int numberOfMarks = 0;
+
 
   while (!isTimeToExit) {
     printMenu();
@@ -54,10 +53,25 @@ int main() {
         break;
       case 2:
         if (!isDataSaved) {
-          std::cout << "Data saving..." << std::endl;
-          deanery.saveData();
-          std::cout << "Data saved successfully!" << std::endl;
-          isDataSaved = true;
+          if (isDataLoaded) {
+            std::cout << "Data saving..." << std::endl;
+            deanery.saveData();
+            std::cout << "Data saved successfully!" << std::endl;
+            isDataSaved = true;
+          } else {
+            answer = ' ';
+            std::cout << "There is no loaded data. Are you sure you want to "
+                         "save empty data? (Y/N)"
+                      << std::endl;
+            std::cin >> answer;
+            if (answer == 'Y') {
+              std::cout << "Data saving..." << std::endl;
+              deanery.saveData();
+              std::cout << "Data saved successfully!" << std::endl;
+              isDataSaved = true;
+            }
+          }
+
         } else {
           std::cout << "Data is already saved!" << std::endl;
         }
@@ -78,47 +92,66 @@ int main() {
         }
         break;
       case 5:
-        numberOfMarks = 0;
-        std::cout << "Number of marks: ";
-        std::cin >> numberOfMarks;
-        deanery.addRandomMarksForStudents(numberOfMarks);
-        isDataSaved = false;
+        if (isDataLoaded) {
+          numberOfMarks = 0;
+          std::cout << "Number of marks: ";
+          std::cin >> numberOfMarks;
+          deanery.addRandomMarksForStudents(numberOfMarks);
+          isDataSaved = false;
+        } else {
+          std::cout << "There are no groups. Try to load the data" << std::endl;
+        }
+
         break;
       case 6:
-        numberOfMarks = 0;
-        std::cout << "Number of marks: ";
-        std::cin >> numberOfMarks;
-        deanery.replaceAllMarksWithRandom(numberOfMarks);
-        isDataSaved = false;
+        if (isDataLoaded) {
+          numberOfMarks = 0;
+          std::cout << "Number of marks: ";
+          std::cin >> numberOfMarks;
+          deanery.replaceAllMarksWithRandom(numberOfMarks);
+          isDataSaved = false;
+        } else {
+          std::cout << "There are no groups. Try to load the data" << std::endl;
+        }
         break;
       case 7:
-        identificatorOfStudent = "";
-        titleOfOtherGroup = "";
+        if (isDataLoaded) {
+          identificatorOfStudent = "";
+          titleOfOtherGroup = "";
 
-        std::cout << "Enter fio or ID of student: ";
-        std::cin >> identificatorOfStudent;
-        std::cout << "Enter title of the new group: ";
-        std::cin >> titleOfOtherGroup;
+          std::cout << "Enter fio or ID of student: ";
+          std::cin.clear();
+          std::cin.ignore(INT_MAX, '\n');
+          std::getline(std::cin, identificatorOfStudent);
+          std::cout << "Enter title of the new group: ";
+          std::getline(std::cin, titleOfOtherGroup);
 
-        if (std::isdigit(identificatorOfStudent[0])) {
-          deanery.transferStudentToOtherGroup(std::stoi(identificatorOfStudent),
-                                              titleOfOtherGroup);
+          if (std::isdigit(identificatorOfStudent[0])) {
+            deanery.transferStudentToOtherGroup(
+                std::stoi(identificatorOfStudent), titleOfOtherGroup);
+          } else {
+            deanery.transferStudentToOtherGroup(identificatorOfStudent,
+                                                titleOfOtherGroup);
+          }
+          isDataSaved = false;
         } else {
-          deanery.transferStudentToOtherGroup(identificatorOfStudent,
-                                              titleOfOtherGroup);
+          std::cout << "There are no groups. Try to load the data" << std::endl;
         }
-        isDataSaved = false;
         break;
       case 8:
-        deanery.fireStudents();
+        if (isDataLoaded) {
+          deanery.fireStudents();
+        } else {
+          std::cout << "There are no groups. Try to load the data" << std::endl;
+        }
         break;
       case 9:
         if (!isDataSaved) {
           std::cout
-              << "Are you sure you want to exit without saving yout data? (Y/N)"
+              << "Are you sure you want to exit without saving your data? (Y/N)"
               << std::endl;
-          std::cin >> choiceForExit;
-          if (choiceForExit == 'Y') {
+          std::cin >> answer;
+          if (answer == 'Y') {
             isTimeToExit = true;
           }
         } else {

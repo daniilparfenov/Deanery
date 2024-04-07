@@ -1,6 +1,6 @@
-23КНТ-4 ИМИКН None
-23КНТ-5 ИМИКН Майорова Мария Вадимовна
-23КНТ-6 ИМИКН Михеева Алина Андреевна
-23КНТ-7 ИМИКН None
-23КНТ-8 ИМИКН None
-23КНТ-9 ИМИКН None
+23KNT-4 IMIKN Zaharchenko Yana Aleksandrovna
+23KNT-5 IMIKN Majorova Mariya Vadimovna
+23KNT-6 IMIKN Miheeva Alina Andreevna
+23KNT-7 IMIKN Makshaeva Melanya Aleksandrovna
+23KNT-8 IMIKN Batyaev Egor Konstantinovich
+23KNT-9 IMIKN Cirulev Dmitrij Aleksandrovich
